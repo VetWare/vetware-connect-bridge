@@ -1,9 +1,9 @@
-.gradle
-.idea
-build
-gradle
-out
-
-application.properties
+.gradle/
+.idea/
+build/
+gradle/
 gradlew
 gradlew.bat
+out/
+
+application.properties
