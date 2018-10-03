@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0"
@@ -17,9 +18,17 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#onPrefAction" text="Preferences"/>
+                        <MenuItem mnemonicParsing="false" onAction="#onPrefAction" text="Preferences">
+                            <graphic>
+                                <FontIcon iconLiteral="gmi-settings" iconSize="16"/>
+                            </graphic>
+                        </MenuItem>
                         <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" onAction="#onExitAction" text="Exit"/>
+                        <MenuItem mnemonicParsing="false" onAction="#onExitAction" text="Exit">
+                            <graphic>
+                                <FontIcon iconLiteral="gmi-power-settings-new" iconSize="16"/>
+                            </graphic>
+                        </MenuItem>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
@@ -29,7 +38,11 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About"/>
+                        <MenuItem mnemonicParsing="false" text="About">
+                            <graphic>
+                                <FontIcon iconLiteral="gmi-info" iconSize="16"/>
+                            </graphic>
+                        </MenuItem>
                     </items>
                 </Menu>
             </menus>

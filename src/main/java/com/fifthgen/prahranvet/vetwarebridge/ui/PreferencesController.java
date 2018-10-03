@@ -19,7 +19,11 @@ public class PreferencesController implements Initializable {
 
     public Stage stage;
     @FXML
-    private TextField apiUrlText;
+    private TextField clientText;
+    @FXML
+    private TextField practiceNameText;
+    @FXML
+    private TextField accountCodeText;
     @FXML
     private TextField userIdText;
     @FXML
@@ -27,10 +31,14 @@ public class PreferencesController implements Initializable {
     @FXML
     private TextField userTokenText;
     @FXML
-    private TextField accountCodeText;
+    private TextField apiUrlText;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // General preferences.
+        clientText.setText(Application.propertyManager.getProperty(PropertyKey.CLIENT.getKey()));
+        practiceNameText.setText(Application.propertyManager.getProperty(PropertyKey.PRACTICE_NAME.getKey()));
+
         // Account preferences
         accountCodeText.setText(Application.propertyManager.getProperty(PropertyKey.ACCOUNT_CODE.getKey()));
         userIdText.setText(Application.propertyManager.getProperty(PropertyKey.USER_ID.getKey()));
@@ -59,6 +67,9 @@ public class PreferencesController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get().equals(ButtonType.YES)) {
+            // General preferences.
+            Application.propertyManager.setProperty(PropertyKey.CLIENT.getKey(), clientText.getText());
+            Application.propertyManager.setProperty(PropertyKey.PRACTICE_NAME.getKey(), practiceNameText.getText());
 
             // Account preferences.
             Application.propertyManager.setProperty(PropertyKey.ACCOUNT_CODE.getKey(), accountCodeText.getText());

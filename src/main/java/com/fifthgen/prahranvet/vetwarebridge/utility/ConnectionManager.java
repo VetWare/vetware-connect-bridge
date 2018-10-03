@@ -1,6 +1,14 @@
 package com.fifthgen.prahranvet.vetwarebridge.utility;
 
-import com.fifthgen.prahranvet.vetwarebridge.Application;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.concurrent.FutureCallback;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
+import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
+import org.apache.http.impl.nio.client.HttpAsyncClients;
+import org.apache.http.nio.client.HttpAsyncClient;
+import org.apache.http.ssl.SSLContextBuilder;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -15,13 +23,19 @@ public class ConnectionManager {
 
     private static final int TIMEOUT = 2000;
 
+    private PropertyManager propertyManager;
+
+    public ConnectionManager(PropertyManager propertyManager) {
+        this.propertyManager = propertyManager;
+    }
+
     /**
      * Check whether the application can connect to the remote host.
      *
      * @return True if can connect, else false.
      */
-    public static boolean checkConnection() {
-        String apiUrl = Application.propertyManager.getProperty(PropertyKey.API_URL.getKey());
+    public boolean checkConnection() {
+        String apiUrl = this.propertyManager.getProperty(PropertyKey.API_URL.getKey());
 
         try {
             URL url = new URL(apiUrl);
@@ -41,5 +55,30 @@ public class ConnectionManager {
         }
 
         return false;
+    }
+
+    /**
+     * Execute the given request in the <code>{@link HttpAsyncClient}</code>.
+     * Returns a <code>{@link HttpResponse}</code> as a <code>{@link FutureCallback}</code>.
+     *
+     * @param request  The request object that needs executing.
+     * @param callback <code>{@link FutureCallback}</code> containing the response.
+     */
+    public void connect(HttpUriRequest request, FutureCallback<HttpResponse> callback) {
+        SSLContextBuilder sslContextBuilder = new SSLContextBuilder();
+
+        try {
+            sslContextBuilder.loadTrustMaterial(null, new TrustSelfSignedStrategy());
+
+            try (CloseableHttpAsyncClient client = HttpAsyncClients.custom()
+                    .setSSLContext(sslContextBuilder.build())
+                    .setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE)
+                    .build()) {
+                client.start();
+                client.execute(request, callback).get();
+            }
+        } catch (Exception e) {
+            Logger.getGlobal().severe("Couldn't execute the request using the AsyncClient.");
+        }
     }
 }

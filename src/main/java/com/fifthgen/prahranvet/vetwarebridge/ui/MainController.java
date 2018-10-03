@@ -1,5 +1,6 @@
 package com.fifthgen.prahranvet.vetwarebridge.ui;
 
+import com.fifthgen.prahranvet.vetwarebridge.Application;
 import com.fifthgen.prahranvet.vetwarebridge.utility.ConnectionManager;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -70,7 +71,8 @@ public class MainController implements Initializable {
 
         @Override
         public void run() {
-            if (ConnectionManager.checkConnection()) {
+            ConnectionManager connectionManager = new ConnectionManager(Application.propertyManager);
+            if (connectionManager.checkConnection()) {
                 Platform.runLater(() -> {
                     netStatLabel.setText(ONLINE);
                     netStatLabel.getStyleClass().clear();

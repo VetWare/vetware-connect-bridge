@@ -23,14 +23,30 @@
                 <content>
                     <GridPane>
                         <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                            <ColumnConstraints hgrow="NEVER" prefWidth="100.0"/>
+                            <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                            <ColumnConstraints hgrow="NEVER" prefWidth="400.0"/>
+                            <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
+                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0"
+                                            vgrow="NEVER"/>
+                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0"
+                                            vgrow="NEVER"/>
+                            <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
                         </rowConstraints>
+                        <children>
+                            <Label text="Client" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                            <TextField fx:id="clientText" promptText="Enter your client name and version."
+                                       GridPane.columnIndex="3"
+                                       GridPane.rowIndex="1"/>
+                            <Label text="Practice name" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                            <TextField fx:id="practiceNameText" promptText="Enter your practice name."
+                                       GridPane.columnIndex="3"
+                                       GridPane.rowIndex="2"/>
+                        </children>
                     </GridPane>
                 </content>
             </Tab>

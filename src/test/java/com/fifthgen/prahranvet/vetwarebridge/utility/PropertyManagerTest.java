@@ -1,6 +1,5 @@
-package com.fifthgen.prahranvet.vetwarebridge;
+package com.fifthgen.prahranvet.vetwarebridge.utility;
 
-import com.fifthgen.prahranvet.vetwarebridge.utility.PropertyManager;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
