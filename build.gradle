@@ -8,6 +8,7 @@ buildscript {
 }
 
 plugins {
+    id 'com.github.johnrengelman.shadow' version '4.0.1'
     id 'java'
     id 'net.nemerosa.versioning' version '2.6.1'
 }
@@ -43,6 +44,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.7'
     implementation 'org.kordamp.ikonli:ikonli-javafx:2.4.0'
     implementation 'org.kordamp.ikonli:ikonli-material-pack:2.4.0'
+    implementation 'org.apache.commons:commons-csv:1.6'
 
     testImplementation 'junit:junit:4.12'
 }

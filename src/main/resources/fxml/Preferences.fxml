@@ -3,12 +3,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 <?import java.net.URL?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.112"
+      minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.121"
       fx:controller="com.fifthgen.prahranvet.vetwarebridge.ui.PreferencesController">
     <stylesheets>
-        <URL value="@../styles/dialog.css"/>
         <URL value="@../styles/core.css"/>
     </stylesheets>
     <AnchorPane>
@@ -20,8 +20,11 @@
     <TabPane tabClosingPolicy="UNAVAILABLE">
         <tabs>
             <Tab text="General">
+                <graphic>
+                    <FontIcon iconLiteral="gmi-settings-applications" iconSize="16"/>
+                </graphic>
                 <content>
-                    <GridPane>
+                    <GridPane styleClass="bordered-panel">
                         <columnConstraints>
                             <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
                             <ColumnConstraints hgrow="NEVER" prefWidth="100.0"/>
@@ -40,17 +43,18 @@
                         <children>
                             <Label text="Client" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
                             <TextField fx:id="clientText" promptText="Enter your client name and version."
-                                       GridPane.columnIndex="3"
-                                       GridPane.rowIndex="1"/>
+                                       GridPane.columnIndex="3" GridPane.rowIndex="1"/>
                             <Label text="Practice name" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                             <TextField fx:id="practiceNameText" promptText="Enter your practice name."
-                                       GridPane.columnIndex="3"
-                                       GridPane.rowIndex="2"/>
+                                       GridPane.columnIndex="3" GridPane.rowIndex="2"/>
                         </children>
                     </GridPane>
                 </content>
             </Tab>
             <Tab text="Account">
+                <graphic>
+                    <FontIcon iconLiteral="gmi-account-box" iconSize="16"/>
+                </graphic>
                 <content>
                     <GridPane styleClass="bordered-panel">
                         <columnConstraints>
@@ -75,8 +79,7 @@
                         <children>
                             <Label text="Account code" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
                             <TextField fx:id="accountCodeText" promptText="Enter your account code."
-                                       GridPane.columnIndex="3"
-                                       GridPane.rowIndex="1"/>
+                                       GridPane.columnIndex="3" GridPane.rowIndex="1"/>
                             <Label text="User ID" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                             <TextField fx:id="userIdText" promptText="Enter your user ID." GridPane.columnIndex="3"
                                        GridPane.rowIndex="2"/>
@@ -93,6 +96,9 @@
                 </content>
             </Tab>
             <Tab text="API">
+                <graphic>
+                    <FontIcon iconLiteral="gmi-cloud-circle" iconSize="16"/>
+                </graphic>
                 <content>
                     <GridPane styleClass="bordered-panel">
                         <columnConstraints>

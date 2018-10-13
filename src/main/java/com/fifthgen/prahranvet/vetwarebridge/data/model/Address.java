@@ -1,25 +1,14 @@
 package com.fifthgen.prahranvet.vetwarebridge.data.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Objects;
 
 public class Address {
 
-    @JsonProperty("AddressLine1")
     private String addressLine1;
-
-    @JsonProperty("AddressLine2")
     private String addressLine2;
-
-    @JsonProperty("Suburb")
     private String suburb;
-
-    @JsonProperty("State")
     private String state;
-
-    @JsonProperty("Postcode")
     private Integer postcode;
-
-    @JsonProperty("Country")
     private String country;
 
     public String getAddressLine1() {
@@ -68,5 +57,35 @@ public class Address {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return Objects.equals(addressLine1, address.addressLine1) &&
+                Objects.equals(addressLine2, address.addressLine2) &&
+                Objects.equals(suburb, address.suburb) &&
+                Objects.equals(state, address.state) &&
+                Objects.equals(postcode, address.postcode) &&
+                Objects.equals(country, address.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(addressLine1, addressLine2, suburb, state, postcode, country);
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "addressLine1='" + addressLine1 + '\'' +
+                ", addressLine2='" + addressLine2 + '\'' +
+                ", suburb='" + suburb + '\'' +
+                ", state='" + state + '\'' +
+                ", postcode=" + postcode +
+                ", country='" + country + '\'' +
+                '}';
     }
 }

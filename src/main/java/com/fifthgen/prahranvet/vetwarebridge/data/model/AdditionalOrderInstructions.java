@@ -1,27 +1,15 @@
 package com.fifthgen.prahranvet.vetwarebridge.data.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.Date;
+import java.util.Objects;
 
 public class AdditionalOrderInstructions {
 
-    @JsonProperty("Notes")
     private String notes;
-
-    @JsonProperty("DeliveryInstructions")
     private String deliveryInstructions;
-
-    @JsonProperty("IncludeInvoiceWithDelivery")
-    private Boolean includeInvoiceWithDelivery;
-
-    @JsonProperty("RequestedDeliveryDate")
+    private Boolean includeInvoiceWithGoods;
     private Date requestedDeliveryDate;
-
-    @JsonProperty("ShipWithNextOrder")
     private Boolean shipWithNextOrder;
-
-    @JsonProperty("PickUp")
     private Boolean pickUp;
 
     public String getNotes() {
@@ -40,12 +28,12 @@ public class AdditionalOrderInstructions {
         this.deliveryInstructions = deliveryInstructions;
     }
 
-    public Boolean getIncludeInvoiceWithDelivery() {
-        return includeInvoiceWithDelivery;
+    public Boolean getIncludeInvoiceWithGoods() {
+        return includeInvoiceWithGoods;
     }
 
-    public void setIncludeInvoiceWithDelivery(Boolean includeInvoiceWithDelivery) {
-        this.includeInvoiceWithDelivery = includeInvoiceWithDelivery;
+    public void setIncludeInvoiceWithGoods(Boolean includeInvoiceWithGoods) {
+        this.includeInvoiceWithGoods = includeInvoiceWithGoods;
     }
 
     public Date getRequestedDeliveryDate() {
@@ -70,5 +58,35 @@ public class AdditionalOrderInstructions {
 
     public void setPickUp(Boolean pickUp) {
         this.pickUp = pickUp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AdditionalOrderInstructions that = (AdditionalOrderInstructions) o;
+        return Objects.equals(notes, that.notes) &&
+                Objects.equals(deliveryInstructions, that.deliveryInstructions) &&
+                Objects.equals(includeInvoiceWithGoods, that.includeInvoiceWithGoods) &&
+                Objects.equals(requestedDeliveryDate, that.requestedDeliveryDate) &&
+                Objects.equals(shipWithNextOrder, that.shipWithNextOrder) &&
+                Objects.equals(pickUp, that.pickUp);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(notes, deliveryInstructions, includeInvoiceWithGoods, requestedDeliveryDate, shipWithNextOrder, pickUp);
+    }
+
+    @Override
+    public String toString() {
+        return "AdditionalOrderInstructions{" +
+                "notes='" + notes + '\'' +
+                ", deliveryInstructions='" + deliveryInstructions + '\'' +
+                ", includeInvoiceWithGoods=" + includeInvoiceWithGoods +
+                ", requestedDeliveryDate=" + requestedDeliveryDate +
+                ", shipWithNextOrder=" + shipWithNextOrder +
+                ", pickUp=" + pickUp +
+                '}';
     }
 }

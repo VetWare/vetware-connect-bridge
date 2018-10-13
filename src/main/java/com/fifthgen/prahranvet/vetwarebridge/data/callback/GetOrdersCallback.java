@@ -1,15 +1,11 @@
 package com.fifthgen.prahranvet.vetwarebridge.data.callback;
 
-import org.apache.http.HttpResponse;
+import com.fifthgen.prahranvet.vetwarebridge.data.model.OrderSummary;
 
 public interface GetOrdersCallback extends ConnectCallback {
 
-    @Override
-    void onCompleted(HttpResponse response);
+    void onCompleted(OrderSummary[] orderSummaries);
 
     @Override
     void onFailed(Exception e);
-
-    @Override
-    void onCancelled();
 }

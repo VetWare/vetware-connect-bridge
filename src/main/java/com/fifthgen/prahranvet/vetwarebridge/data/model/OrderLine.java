@@ -1,28 +1,15 @@
 package com.fifthgen.prahranvet.vetwarebridge.data.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Objects;
 
 public class OrderLine {
 
-    @JsonProperty("LineItemNumber")
     private String lineItemNumber;
-
-    @JsonProperty("ProductCode")
     private String productCode;
-
-    @JsonProperty("Description")
     private String description;
-
-    @JsonProperty("Quantity")
     private Integer quantity;
-
-    @JsonProperty("Price")
     private Double price;
-
-    @JsonProperty("Critical")
     private Boolean critical;
-
-    @JsonProperty("Notes")
     private String notes;
 
     public String getLineItemNumber() {
@@ -79,5 +66,37 @@ public class OrderLine {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderLine orderLine = (OrderLine) o;
+        return Objects.equals(lineItemNumber, orderLine.lineItemNumber) &&
+                Objects.equals(productCode, orderLine.productCode) &&
+                Objects.equals(description, orderLine.description) &&
+                Objects.equals(quantity, orderLine.quantity) &&
+                Objects.equals(price, orderLine.price) &&
+                Objects.equals(critical, orderLine.critical) &&
+                Objects.equals(notes, orderLine.notes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lineItemNumber, productCode, description, quantity, price, critical, notes);
+    }
+
+    @Override
+    public String toString() {
+        return "OrderLine{" +
+                "lineItemNumber='" + lineItemNumber + '\'' +
+                ", productCode='" + productCode + '\'' +
+                ", description='" + description + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", critical=" + critical +
+                ", notes='" + notes + '\'' +
+                '}';
     }
 }

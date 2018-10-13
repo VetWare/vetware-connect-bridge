@@ -73,7 +73,7 @@ public class Application extends javafx.application.Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("fxml/Main.fxml"));
 
-        // Load and get the main controller.
+        // Load and getOrders the main controller.
         Parent root = loader.load();
         MainController controller = loader.getController();
 

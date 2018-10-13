@@ -6,7 +6,7 @@
 }
 
 .bordered-panel {
-    -fx-border-insets: 0;
+    -fx-border-insets: 10;
     -fx-border-color: -fx-text-box-border;
     -fx-border-width: 1;
 }
@@ -24,3 +24,17 @@
     -fx-background-color: 'red';
 }
 
+.table-cell-center {
+    -fx-alignment: center;
+}
+
+.error-label {
+    -fx-text-fill: 'red';
+}
+
+.title-label {
+    -fx-background-color: '#2013AF';
+    -fx-text-fill: '#FFF';
+    -fx-font-size: 16px;
+    -fx-padding: 10px;
+}

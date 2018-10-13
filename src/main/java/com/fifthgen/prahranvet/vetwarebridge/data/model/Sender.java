@@ -1,22 +1,13 @@
 package com.fifthgen.prahranvet.vetwarebridge.data.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Objects;
 
 public class Sender {
 
-    @JsonProperty("AccountCode")
     private String accountCode;
-
-    @JsonProperty("Name")
     private String name;
-
-    @JsonProperty("Email")
     private String email;
-
-    @JsonProperty("Phone")
     private String phone;
-
-    @JsonProperty("AuthorisedBy")
     private String authorisedBy;
 
     public String getAccountCode() {
@@ -57,5 +48,33 @@ public class Sender {
 
     public void setAuthorisedBy(String authorisedBy) {
         this.authorisedBy = authorisedBy;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sender sender = (Sender) o;
+        return Objects.equals(accountCode, sender.accountCode) &&
+                Objects.equals(name, sender.name) &&
+                Objects.equals(email, sender.email) &&
+                Objects.equals(phone, sender.phone) &&
+                Objects.equals(authorisedBy, sender.authorisedBy);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(accountCode, name, email, phone, authorisedBy);
+    }
+
+    @Override
+    public String toString() {
+        return "Sender{" +
+                "accountCode='" + accountCode + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", authorisedBy='" + authorisedBy + '\'' +
+                '}';
     }
 }
