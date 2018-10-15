@@ -4,7 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fifthgen.prahranvet.vetwarebridge.Application;
 import com.fifthgen.prahranvet.vetwarebridge.data.callback.GetOrderCallback;
 import com.fifthgen.prahranvet.vetwarebridge.data.callback.GetOrdersCallback;
+import com.fifthgen.prahranvet.vetwarebridge.data.callback.PostOrderCallback;
 import com.fifthgen.prahranvet.vetwarebridge.data.model.Order;
+import com.fifthgen.prahranvet.vetwarebridge.data.model.OrderPlaced;
 import com.fifthgen.prahranvet.vetwarebridge.data.model.OrderSummary;
 import com.fifthgen.prahranvet.vetwarebridge.data.model.exception.BadRequestException;
 import com.fifthgen.prahranvet.vetwarebridge.data.model.exception.NotFoundException;
@@ -18,6 +20,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.concurrent.FutureCallback;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
@@ -30,6 +33,7 @@ public class ConnectAPI {
     private static final String AUTHORIZE = "/";
     private static final String ORDERS = "/orders";
     private static final String ORDER = "/orders/%d";
+    private static final String PRODUCT = "/product";
 
     private final String client;
     private final String practiceName;
@@ -138,6 +142,54 @@ public class ConnectAPI {
                             return;
                         } catch (IOException e) {
                             String msg = "Couldn't convert entity into Order";
+                            Logger.getGlobal().severe(msg + ": \n" + e.getLocalizedMessage());
+                            callback.onFailed(e);
+                        }
+                    case 400:
+                        Logger.getGlobal().severe("400 - Bad request");
+                        callback.onFailed(new BadRequestException());
+                    case 401:
+                        Logger.getGlobal().severe("401 - Unauthorized");
+                        callback.onFailed(new UnauthorizedException());
+                    case 404:
+                        Logger.getGlobal().severe("404 - Not found");
+                        callback.onFailed(new NotFoundException());
+                }
+            }
+
+            @Override
+            public void failed(Exception ex) {
+                Logger.getGlobal().severe("Exception in request: \n" + ex.getLocalizedMessage());
+                callback.onFailed(ex);
+            }
+
+            @Override
+            public void cancelled() {
+                Logger.getGlobal().warning("Request cancelled");
+                callback.onFailed(new RequestCancelledException());
+            }
+        });
+    }
+
+    public void postOrder(PostOrderCallback callback) {
+        HttpPost postRequest = new HttpPost(apiUrl + ORDERS);
+        postRequest.setHeaders(setUpHeaders());
+
+        ConnectionManager connectionManager = new ConnectionManager(Application.propertyManager);
+        connectionManager.connect(postRequest, new FutureCallback<HttpResponse>() {
+
+            @Override
+            public void completed(HttpResponse result) {
+                switch (result.getStatusLine().getStatusCode()) {
+                    case 201:
+                        HttpEntity entity = result.getEntity();
+                        ObjectMapper mapper = new ObjectMapper();
+
+                        try {
+                            callback.onCompleted(mapper.readValue(EntityUtils.toString(entity), OrderPlaced.class));
+                            return;
+                        } catch (IOException e) {
+                            String msg = "Couldn't convert entity into OrderPlaced";
                             Logger.getGlobal().severe(msg + ": \n" + e.getLocalizedMessage());
                             callback.onFailed(e);
                         }

@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import org.kordamp.ikonli.javafx.*?>
 <?import java.net.URL?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.121"
@@ -12,126 +12,167 @@
         <URL value="@../styles/core.css"/>
     </stylesheets>
     <AnchorPane>
-        <children>
-            <Label styleClass="title-label" text="Preferences" AnchorPane.bottomAnchor="10.0"
-                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0"/>
-        </children>
+        <Label styleClass="title-label" text="Preferences" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0"
+               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0"/>
     </AnchorPane>
     <TabPane tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-            <Tab text="General">
-                <graphic>
-                    <FontIcon iconLiteral="gmi-settings-applications" iconSize="16"/>
-                </graphic>
-                <content>
-                    <GridPane styleClass="bordered-panel">
-                        <columnConstraints>
-                            <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
-                            <ColumnConstraints hgrow="NEVER" prefWidth="100.0"/>
-                            <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
-                            <ColumnConstraints hgrow="NEVER" prefWidth="400.0"/>
-                            <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
-                        </columnConstraints>
-                        <rowConstraints>
-                            <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
-                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0"
-                                            vgrow="NEVER"/>
-                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0"
-                                            vgrow="NEVER"/>
-                            <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
-                        </rowConstraints>
-                        <children>
-                            <Label text="Client" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                            <TextField fx:id="clientText" promptText="Enter your client name and version."
-                                       GridPane.columnIndex="3" GridPane.rowIndex="1"/>
-                            <Label text="Practice name" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                            <TextField fx:id="practiceNameText" promptText="Enter your practice name."
-                                       GridPane.columnIndex="3" GridPane.rowIndex="2"/>
-                        </children>
-                    </GridPane>
-                </content>
-            </Tab>
-            <Tab text="Account">
-                <graphic>
-                    <FontIcon iconLiteral="gmi-account-box" iconSize="16"/>
-                </graphic>
-                <content>
-                    <GridPane styleClass="bordered-panel">
-                        <columnConstraints>
-                            <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
-                            <ColumnConstraints hgrow="NEVER" prefWidth="100.0"/>
-                            <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
-                            <ColumnConstraints hgrow="NEVER" prefWidth="400.0"/>
-                            <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
-                        </columnConstraints>
-                        <rowConstraints>
-                            <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
-                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0"
-                                            vgrow="NEVER"/>
-                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0"
-                                            vgrow="NEVER"/>
-                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0"
-                                            vgrow="NEVER"/>
-                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0"
-                                            vgrow="NEVER"/>
-                            <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
-                        </rowConstraints>
-                        <children>
-                            <Label text="Account code" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                            <TextField fx:id="accountCodeText" promptText="Enter your account code."
-                                       GridPane.columnIndex="3" GridPane.rowIndex="1"/>
-                            <Label text="User ID" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                            <TextField fx:id="userIdText" promptText="Enter your user ID." GridPane.columnIndex="3"
-                                       GridPane.rowIndex="2"/>
+        <Tab text="General">
+            <graphic>
+                <FontIcon iconLiteral="gmi-settings-applications" iconSize="16"/>
+            </graphic>
+            <GridPane styleClass="bordered-panel">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                    <ColumnConstraints hgrow="NEVER" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                    <ColumnConstraints hgrow="NEVER" prefWidth="400.0"/>
+                    <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
+                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                    <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
+                </rowConstraints>
+                <Label text="Client" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <TextField fx:id="clientText" promptText="Enter your client name and version." GridPane.columnIndex="3"
+                           GridPane.rowIndex="1"/>
+                <Label text="Practice name" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <TextField fx:id="practiceNameText" promptText="Enter your practice name." GridPane.columnIndex="3"
+                           GridPane.rowIndex="2"/>
+            </GridPane>
+        </Tab>
+        <Tab text="Sender">
+            <graphic>
+                <FontIcon iconLiteral="gmi-contact-mail" iconSize="16"/>
+            </graphic>
+            <GridPane styleClass="bordered-panel">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                    <ColumnConstraints hgrow="NEVER" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                    <ColumnConstraints hgrow="NEVER" prefWidth="400.0"/>
+                    <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
+                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                    <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
+                </rowConstraints>
+                <Label text="Name" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <TextField fx:id="nameText" promptText="Enter your name." GridPane.columnIndex="3"
+                           GridPane.rowIndex="1"/>
+                <Label text="Email" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <TextField fx:id="emailText" promptText="Enter your email." GridPane.columnIndex="3"
+                           GridPane.rowIndex="2"/>
+            </GridPane>
+        </Tab>
+        <Tab text="Ship To">
+            <graphic>
+                <FontIcon iconLiteral="gmi-local-shipping" iconSize="16"/>
+            </graphic>
+            <GridPane styleClass="bordered-panel">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                    <ColumnConstraints hgrow="NEVER" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                    <ColumnConstraints hgrow="NEVER" prefWidth="400.0"/>
+                    <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
+                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                    <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
+                </rowConstraints>
+                <Label text="Street Address" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <TextField fx:id="streetAddressText" promptText="Enter your street address." GridPane.columnIndex="3"
+                           GridPane.rowIndex="1"/>
+                <Label text="Suburb" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <TextField fx:id="suburbText" promptText="Enter your suburb." GridPane.columnIndex="3"
+                           GridPane.rowIndex="2"/>
+                <Label text="State" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <TextField fx:id="stateText" promptText="Enter your state." GridPane.columnIndex="3"
+                           GridPane.rowIndex="3"/>
+                <Label text="Postcode" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <TextField fx:id="postcodeText" promptText="Enter your postcode." GridPane.columnIndex="3"
+                           GridPane.rowIndex="4"/>
+                <Label text="Country" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                <TextField fx:id="countryText" promptText="Enter your country." GridPane.columnIndex="3"
+                           GridPane.rowIndex="5"/>
 
-                            <Label text="Client token" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                            <TextField fx:id="clientTokenText" promptText="Enter your client token."
-                                       GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+            </GridPane>
+        </Tab>
+        <Tab text="Account">
+            <graphic>
+                <FontIcon iconLiteral="gmi-account-box" iconSize="16"/>
+            </graphic>
+            <GridPane styleClass="bordered-panel">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                    <ColumnConstraints hgrow="NEVER" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                    <ColumnConstraints hgrow="NEVER" prefWidth="400.0"/>
+                    <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
+                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                    <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
+                </rowConstraints>
+                <Label text="Account code" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <TextField fx:id="accountCodeText" promptText="Enter your account code." GridPane.columnIndex="3"
+                           GridPane.rowIndex="1"/>
+                <Label text="User ID" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <TextField fx:id="userIdText" promptText="Enter your user ID." GridPane.columnIndex="3"
+                           GridPane.rowIndex="2"/>
 
-                            <Label text="User token" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-                            <TextField fx:id="userTokenText" promptText="Enter your user token."
-                                       GridPane.columnIndex="3" GridPane.rowIndex="4"/>
-                        </children>
-                    </GridPane>
-                </content>
-            </Tab>
-            <Tab text="API">
-                <graphic>
-                    <FontIcon iconLiteral="gmi-cloud-circle" iconSize="16"/>
-                </graphic>
-                <content>
-                    <GridPane styleClass="bordered-panel">
-                        <columnConstraints>
-                            <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
-                            <ColumnConstraints hgrow="NEVER" prefWidth="100.0"/>
-                            <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
-                            <ColumnConstraints hgrow="NEVER" prefWidth="400.0"/>
-                            <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
-                        </columnConstraints>
-                        <rowConstraints>
-                            <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
-                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0"
-                                            vgrow="NEVER"/>
-                            <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
-                        </rowConstraints>
-                        <children>
-                            <Label text="API URL" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                            <TextField fx:id="apiUrlText" promptText="Enter the API URL." GridPane.columnIndex="3"
-                                       GridPane.rowIndex="1"/>
-                        </children>
-                    </GridPane>
-                </content>
-            </Tab>
-        </tabs>
+                <Label text="Client token" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <TextField fx:id="clientTokenText" promptText="Enter your client token." GridPane.columnIndex="3"
+                           GridPane.rowIndex="3"/>
+
+                <Label text="User token" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <TextField fx:id="userTokenText" promptText="Enter your user token." GridPane.columnIndex="3"
+                           GridPane.rowIndex="4"/>
+            </GridPane>
+        </Tab>
+        <Tab text="API">
+            <graphic>
+                <FontIcon iconLiteral="gmi-cloud-circle" iconSize="16"/>
+            </graphic>
+            <GridPane styleClass="bordered-panel">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                    <ColumnConstraints hgrow="NEVER" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                    <ColumnConstraints hgrow="NEVER" prefWidth="400.0"/>
+                    <ColumnConstraints hgrow="ALWAYS" prefWidth="30.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
+                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                    <RowConstraints prefHeight="30.0" vgrow="ALWAYS"/>
+                </rowConstraints>
+                <Label text="API URL" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <TextField fx:id="apiUrlText" promptText="Enter the API URL." GridPane.columnIndex="3"
+                           GridPane.rowIndex="1"/>
+            </GridPane>
+        </Tab>
+
         <VBox.margin>
             <Insets/>
         </VBox.margin>
     </TabPane>
     <HBox alignment="CENTER_RIGHT" spacing="10.0">
-        <children>
-            <Button mnemonicParsing="false" onAction="#onApplyAction" prefWidth="75.0" text="Apply"/>
-            <Button mnemonicParsing="false" onAction="#onCancelAction" prefWidth="75.0" text="Cancel"/>
-        </children>
+        <Button mnemonicParsing="false" onAction="#onApplyAction" prefWidth="75.0" text="Apply"/>
+        <Button mnemonicParsing="false" onAction="#onCancelAction" prefWidth="75.0" text="Cancel"/>
         <opaqueInsets>
             <Insets/>
         </opaqueInsets>

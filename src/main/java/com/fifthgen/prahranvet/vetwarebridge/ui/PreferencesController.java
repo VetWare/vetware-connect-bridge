@@ -17,11 +17,25 @@ import java.util.logging.Logger;
 
 public class PreferencesController implements Initializable {
 
-    public Stage stage;
+    Stage stage;
     @FXML
     private TextField clientText;
     @FXML
     private TextField practiceNameText;
+    @FXML
+    private TextField nameText;
+    @FXML
+    private TextField emailText;
+    @FXML
+    private TextField streetAddressText;
+    @FXML
+    private TextField suburbText;
+    @FXML
+    private TextField stateText;
+    @FXML
+    private TextField postcodeText;
+    @FXML
+    private TextField countryText;
     @FXML
     private TextField accountCodeText;
     @FXML
@@ -38,6 +52,17 @@ public class PreferencesController implements Initializable {
         // General preferences.
         clientText.setText(Application.propertyManager.getProperty(PropertyKey.CLIENT.getKey()));
         practiceNameText.setText(Application.propertyManager.getProperty(PropertyKey.PRACTICE_NAME.getKey()));
+
+        // Sender preferences.
+        nameText.setText(Application.propertyManager.getProperty(PropertyKey.NAME.getKey()));
+        emailText.setText(Application.propertyManager.getProperty(PropertyKey.EMAIL.getKey()));
+
+        // Ship to preferences.
+        streetAddressText.setText(Application.propertyManager.getProperty(PropertyKey.STREET_ADDRESS.getKey()));
+        suburbText.setText(Application.propertyManager.getProperty(PropertyKey.SUBURB.getKey()));
+        stateText.setText(Application.propertyManager.getProperty(PropertyKey.STATE.getKey()));
+        postcodeText.setText(Application.propertyManager.getProperty(PropertyKey.POSTCODE.getKey()));
+        countryText.setText(Application.propertyManager.getProperty(PropertyKey.COUNTRY.getKey()));
 
         // Account preferences
         accountCodeText.setText(Application.propertyManager.getProperty(PropertyKey.ACCOUNT_CODE.getKey()));
@@ -70,6 +95,17 @@ public class PreferencesController implements Initializable {
             // General preferences.
             Application.propertyManager.setProperty(PropertyKey.CLIENT.getKey(), clientText.getText());
             Application.propertyManager.setProperty(PropertyKey.PRACTICE_NAME.getKey(), practiceNameText.getText());
+
+            // Sender preferences.
+            Application.propertyManager.setProperty(PropertyKey.NAME.getKey(), nameText.getText());
+            Application.propertyManager.setProperty(PropertyKey.EMAIL.getKey(), emailText.getText());
+
+            // Ship to preferences.
+            Application.propertyManager.setProperty(PropertyKey.STREET_ADDRESS.getKey(), streetAddressText.getText());
+            Application.propertyManager.setProperty(PropertyKey.SUBURB.getKey(), suburbText.getText());
+            Application.propertyManager.setProperty(PropertyKey.STATE.getKey(), stateText.getText());
+            Application.propertyManager.setProperty(PropertyKey.POSTCODE.getKey(), postcodeText.getText());
+            Application.propertyManager.setProperty(PropertyKey.COUNTRY.getKey(), countryText.getText());
 
             // Account preferences.
             Application.propertyManager.setProperty(PropertyKey.ACCOUNT_CODE.getKey(), accountCodeText.getText());
