@@ -30,35 +30,33 @@
                 </MenuItem>
             </Menu>
             <Menu mnemonicParsing="false" text="Orders">
-                <items>
-                    <MenuItem mnemonicParsing="false" onAction="#onOpenAction" text="Open">
-                        <graphic>
-                            <FontIcon iconLiteral="gmi-insert-drive-file" iconSize="16"/>
-                        </graphic>
-                        <accelerator>
-                            <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
-                        </accelerator>
-                    </MenuItem>
-                    <MenuItem mnemonicParsing="false" text="View">
-                        <graphic>
-                            <FontIcon iconLiteral="gmi-pageview" iconSize="16"/>
-                        </graphic>
-                        <accelerator>
-                            <KeyCodeCombination alt="UP" code="ENTER" control="UP" meta="UP" shift="UP" shortcut="UP"/>
-                        </accelerator>
-                    </MenuItem>
-                    <MenuItem mnemonicParsing="false" onAction="#onRefreshAction" text="Refresh">
-                        <graphic>
-                            <FontIcon iconLiteral="gmi-refresh" iconSize="16"/>
-                        </graphic>
-                        <accelerator>
-                            <KeyCodeCombination alt="UP" code="F5" control="UP" meta="UP" shift="UP" shortcut="UP"/>
-                        </accelerator>
-                    </MenuItem>
-                </items>
+                <MenuItem mnemonicParsing="false" onAction="#onOpenAction" text="Open">
+                    <graphic>
+                        <FontIcon iconLiteral="gmi-insert-drive-file" iconSize="16"/>
+                    </graphic>
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                    </accelerator>
+                </MenuItem>
+                <MenuItem mnemonicParsing="false" text="View">
+                    <graphic>
+                        <FontIcon iconLiteral="gmi-pageview" iconSize="16"/>
+                    </graphic>
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="ENTER" control="UP" meta="UP" shift="UP" shortcut="UP"/>
+                    </accelerator>
+                </MenuItem>
+                <MenuItem mnemonicParsing="false" onAction="#onRefreshAction" text="Refresh">
+                    <graphic>
+                        <FontIcon iconLiteral="gmi-refresh" iconSize="16"/>
+                    </graphic>
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="F5" control="UP" meta="UP" shift="UP" shortcut="UP"/>
+                    </accelerator>
+                </MenuItem>
             </Menu>
             <Menu mnemonicParsing="false" text="Help">
-                <MenuItem mnemonicParsing="false" text="About">
+                <MenuItem mnemonicParsing="false" onAction="#onAboutAction" text="About">
                     <graphic>
                         <FontIcon iconLiteral="gmi-info" iconSize="16"/>
                     </graphic>
@@ -85,10 +83,8 @@
                 </GridPane.margin>
             </TableView>
             <AnchorPane GridPane.columnSpan="2147483647">
-                <children>
-                    <Label styleClass="title-label" text="Order Summary" AnchorPane.bottomAnchor="0.0"
-                           AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0"/>
-                </children>
+                <Label styleClass="title-label" text="Order Summary" AnchorPane.bottomAnchor="0.0"
+                       AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0"/>
             </AnchorPane>
         </GridPane>
     </center>

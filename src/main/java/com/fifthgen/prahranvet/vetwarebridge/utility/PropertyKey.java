@@ -14,7 +14,8 @@ public enum PropertyKey {
     USER_ID("user-id"),
     CLIENT_TOKEN("client-token"),
     USER_TOKEN("user-token"),
-    API_URL("api-url");
+    API_URL("api-url"),
+    PO_CNT("po-cnt");
 
     private final String key;
 

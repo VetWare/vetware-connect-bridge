@@ -3,9 +3,16 @@ package com.fifthgen.prahranvet.vetwarebridge.ui;
 import com.fifthgen.prahranvet.vetwarebridge.Application;
 import com.fifthgen.prahranvet.vetwarebridge.data.ConnectAPI;
 import com.fifthgen.prahranvet.vetwarebridge.data.callback.GetOrdersCallback;
+import com.fifthgen.prahranvet.vetwarebridge.data.callback.PostOrderCallback;
+import com.fifthgen.prahranvet.vetwarebridge.data.model.Order;
+import com.fifthgen.prahranvet.vetwarebridge.data.model.OrderPlaced;
 import com.fifthgen.prahranvet.vetwarebridge.data.model.OrderSummary;
+import com.fifthgen.prahranvet.vetwarebridge.data.model.exception.InvalidFileException;
+import com.fifthgen.prahranvet.vetwarebridge.data.model.exception.NonParsableFileException;
 import com.fifthgen.prahranvet.vetwarebridge.ui.factory.TableFactory;
 import com.fifthgen.prahranvet.vetwarebridge.utility.ConnectionManager;
+import com.fifthgen.prahranvet.vetwarebridge.utility.OrderManager;
+import com.fifthgen.prahranvet.vetwarebridge.utility.PropertyManager;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,17 +22,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -61,7 +74,64 @@ public class MainController implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(stage);
 
         if (selectedFile != null) {
-            //stage.display(selectedFile);
+            PropertyManager propertyManager = Application.propertyManager;
+            OrderManager om = new OrderManager(propertyManager);
+
+            try {
+                Order order = om.createOrder(selectedFile.getPath());
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Upload Order");
+                alert.setHeaderText(null);
+                alert.setContentText("Are you sure you want to upload this order?");
+                alert.getButtonTypes().clear();
+                alert.getButtonTypes().add(ButtonType.YES);
+                alert.getButtonTypes().add(ButtonType.NO);
+                Optional<ButtonType> result = alert.showAndWait();
+
+                if (result.isPresent() && result.get() == ButtonType.YES) {
+                    ConnectAPI api = new ConnectAPI(propertyManager);
+                    api.postOrder(order, new PostOrderCallback() {
+                        @Override
+                        public void onCompleted(OrderPlaced orderPlaced) {
+                            // Try to open the order confirmation in the default browser.
+                            if (Desktop.isDesktopSupported()) {
+                                try {
+                                    Desktop.getDesktop().browse(new URI(orderPlaced.getConfirmationUrl()));
+                                } catch (IOException | URISyntaxException e) {
+                                    Logger.getGlobal().info("Couldn't navigate to "
+                                            + orderPlaced.getConfirmationUrl());
+                                }
+                            } else {
+                                Platform.runLater(() -> {
+                                    WebView webView = new WebView();
+                                    webView.setPrefSize(500, 50);
+                                    webView.getEngine().loadContent("<a href=\'" + orderPlaced.getConfirmationUrl() + "\'>"
+                                            + orderPlaced.getConfirmationUrl() + " </a>");
+
+                                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                    alert.setTitle("Order Placed");
+                                    alert.setHeaderText("Order successfully placed. \n"
+                                            + "Please navigate to the following URL to confirm your order.");
+                                    alert.getDialogPane().setContent(webView);
+                                    alert.show();
+                                });
+                            }
+                        }
+
+                        @Override
+                        public void onFailed(Exception e) {
+                            System.out.println("Order creation failed: " + e.getLocalizedMessage());
+                        }
+                    });
+                }
+            } catch (NonParsableFileException e) {
+                Logger.getGlobal().severe("Couldn't parse the order file :" + e.getLocalizedMessage());
+                errorLabel.setText("Couldn't open order file : " + selectedFile.getName());
+            } catch (InvalidFileException e) {
+                Logger.getGlobal().severe("Invalid order file. : " + e.getLocalizedMessage());
+                errorLabel.setText("Invalid order file : " + selectedFile.getName());
+            }
         }
     }
 
@@ -121,6 +191,26 @@ public class MainController implements Initializable {
     @FXML
     private void onRefreshAction() {
         new Thread(new OrderSummaryUpdater()).start();
+    }
+
+    @FXML
+    private void onAboutAction() {
+        FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("fxml/About.fxml"));
+
+        try {
+            // Load and getOrders the preference controller.
+            Parent root = loader.load();
+
+            Stage aboutStage = new Stage();
+            aboutStage.setScene(new Scene(root));
+            aboutStage.initOwner(stage.getOwner());
+            aboutStage.setResizable(false);
+            aboutStage.initModality(Modality.APPLICATION_MODAL);
+            aboutStage.initStyle(StageStyle.UNIFIED);
+            aboutStage.show();
+        } catch (IOException e) {
+            Logger.getGlobal().severe("Couldn't load FXML file: " + e.getLocalizedMessage());
+        }
     }
 
     private class OrderSummaryUpdater implements Runnable {

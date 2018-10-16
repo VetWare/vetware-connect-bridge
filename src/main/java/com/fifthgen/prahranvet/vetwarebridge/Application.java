@@ -92,6 +92,11 @@ public class Application extends javafx.application.Application {
         if (propertyManager.getProperty(PropertyKey.API_URL.getKey()) == null) {
             propertyManager.setProperty(PropertyKey.API_URL.getKey(), "https://google.com");
         }
+
+        // Initialize application settings.
+        if (propertyManager.getProperty(PropertyKey.PO_CNT.getKey()) == null) {
+            propertyManager.setProperty(PropertyKey.PO_CNT.getKey(), "0");
+        }
     }
 
     @Override

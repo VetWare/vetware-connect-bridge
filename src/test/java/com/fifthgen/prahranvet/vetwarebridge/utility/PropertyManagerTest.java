@@ -25,17 +25,17 @@ public class PropertyManagerTest {
     }
 
     @Test
-    public void initPropertyManagerTest() {
+    public void initPropertyManager() {
         Assert.assertNotNull(pm);
     }
 
     @Test
-    public void getPropertyTest() {
+    public void getProperty() {
         Assert.assertEquals(pm.getProperty(KEY), ORIGINAL_VALUE);
     }
 
     @Test
-    public void setPropertyTest() {
+    public void setProperty() {
         pm.setProperty(KEY, NEW_VALUE);
         Assert.assertEquals(pm.getProperty(KEY), NEW_VALUE);
     }

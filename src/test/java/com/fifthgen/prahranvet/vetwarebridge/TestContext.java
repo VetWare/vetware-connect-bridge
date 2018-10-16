@@ -31,6 +31,31 @@ public class TestContext {
             propertyManager.setProperty(PropertyKey.PRACTICE_NAME.getKey(), "Vet");
         }
 
+        // Initialize sender preferences.
+        if (propertyManager.getProperty(PropertyKey.NAME.getKey()) == null) {
+            propertyManager.setProperty(PropertyKey.NAME.getKey(), "Manager");
+        }
+        if (propertyManager.getProperty(PropertyKey.EMAIL.getKey()) == null) {
+            propertyManager.setProperty(PropertyKey.EMAIL.getKey(), "info@youremail.com");
+        }
+
+        // Initialize ship to preferences.
+        if (propertyManager.getProperty(PropertyKey.STREET_ADDRESS.getKey()) == null) {
+            propertyManager.setProperty(PropertyKey.STREET_ADDRESS.getKey(), "");
+        }
+        if (propertyManager.getProperty(PropertyKey.SUBURB.getKey()) == null) {
+            propertyManager.setProperty(PropertyKey.SUBURB.getKey(), "");
+        }
+        if (propertyManager.getProperty(PropertyKey.STATE.getKey()) == null) {
+            propertyManager.setProperty(PropertyKey.STATE.getKey(), "");
+        }
+        if (propertyManager.getProperty(PropertyKey.POSTCODE.getKey()) == null) {
+            propertyManager.setProperty(PropertyKey.POSTCODE.getKey(), "");
+        }
+        if (propertyManager.getProperty(PropertyKey.COUNTRY.getKey()) == null) {
+            propertyManager.setProperty(PropertyKey.COUNTRY.getKey(), "");
+        }
+
         // Initialize account properties.
         if (propertyManager.getProperty(PropertyKey.ACCOUNT_CODE.getKey()) == null) {
             propertyManager.setProperty(PropertyKey.ACCOUNT_CODE.getKey(), "000563");
@@ -48,6 +73,11 @@ public class TestContext {
         // Initialize API properties.
         if (propertyManager.getProperty(PropertyKey.API_URL.getKey()) == null) {
             propertyManager.setProperty(PropertyKey.API_URL.getKey(), "https://google.com");
+        }
+
+        // Initialize application settings.
+        if (propertyManager.getProperty(PropertyKey.PO_CNT.getKey()) == null) {
+            propertyManager.setProperty(PropertyKey.PO_CNT.getKey(), "0");
         }
     }
 }

@@ -5,7 +5,7 @@ import java.util.Objects;
 public class OrderPlaced {
 
     private Integer orderId;
-    private String confirmationURL;
+    private String confirmationUrl;
 
     public Integer getOrderId() {
         return orderId;
@@ -15,12 +15,12 @@ public class OrderPlaced {
         this.orderId = orderId;
     }
 
-    public String getConfirmationURL() {
-        return confirmationURL;
+    public String getConfirmationUrl() {
+        return confirmationUrl;
     }
 
-    public void setConfirmationURL(String confirmationURL) {
-        this.confirmationURL = confirmationURL;
+    public void setConfirmationUrl(String confirmationUrl) {
+        this.confirmationUrl = confirmationUrl;
     }
 
     @Override
@@ -29,19 +29,19 @@ public class OrderPlaced {
         if (o == null || getClass() != o.getClass()) return false;
         OrderPlaced that = (OrderPlaced) o;
         return Objects.equals(orderId, that.orderId) &&
-                Objects.equals(confirmationURL, that.confirmationURL);
+                Objects.equals(confirmationUrl, that.confirmationUrl);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderId, confirmationURL);
+        return Objects.hash(orderId, confirmationUrl);
     }
 
     @Override
     public String toString() {
         return "OrderPlaced{" +
                 "orderId=" + orderId +
-                ", confirmationURL='" + confirmationURL + '\'' +
+                ", confirmationUrl='" + confirmationUrl + '\'' +
                 '}';
     }
 }
