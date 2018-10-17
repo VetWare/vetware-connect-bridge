@@ -50,7 +50,7 @@ public class TestContext {
             propertyManager.setProperty(PropertyKey.STATE.getKey(), "");
         }
         if (propertyManager.getProperty(PropertyKey.POSTCODE.getKey()) == null) {
-            propertyManager.setProperty(PropertyKey.POSTCODE.getKey(), "");
+            propertyManager.setProperty(PropertyKey.POSTCODE.getKey(), "0");
         }
         if (propertyManager.getProperty(PropertyKey.COUNTRY.getKey()) == null) {
             propertyManager.setProperty(PropertyKey.COUNTRY.getKey(), "");
