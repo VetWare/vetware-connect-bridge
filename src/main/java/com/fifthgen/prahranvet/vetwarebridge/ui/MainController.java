@@ -136,6 +136,21 @@ public class MainController implements Initializable {
     }
 
     @FXML
+    private void onViewAction() {
+        int orderIndex = orderSummaryTable.getSelectionModel().getSelectedIndex();
+
+        if (orderIndex < 0) {
+            errorLabel.setText("Please select a row first.");
+        } else {
+            // Reset error label just in case.
+            errorLabel.setText("");
+
+            int orderId = orderSummaryTable.getItems().get(orderIndex).getOrderId();
+            viewOrder(orderId);
+        }
+    }
+
+    @FXML
     private void onPrefAction() throws Exception {
         FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("fxml/Preferences.fxml"));
 

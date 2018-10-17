@@ -8,7 +8,7 @@
 <?import java.lang.String?>
 <?import java.net.URL?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/8.0.121"
+            xmlns="http://javafx.com/javafx/8.0.172-ea"
             fx:controller="com.fifthgen.prahranvet.vetwarebridge.ui.MainController">
     <stylesheets>
         <URL value="@../styles/core.css"/>
@@ -38,7 +38,7 @@
                         <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                     </accelerator>
                 </MenuItem>
-                <MenuItem mnemonicParsing="false" text="View">
+                <MenuItem mnemonicParsing="false" onAction="#onViewAction" text="View">
                     <graphic>
                         <FontIcon iconLiteral="gmi-pageview" iconSize="16"/>
                     </graphic>

@@ -9,215 +9,198 @@
     <stylesheets>
         <URL value="@../styles/core.css"/>
     </stylesheets>
-    <children>
-        <AnchorPane>
-            <children>
-                <Label fx:id="title" styleClass="title-label" text="Order {orderId}" AnchorPane.bottomAnchor="0.0"
-                       AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0"/>
-            </children>
+    <AnchorPane>
+        <Label fx:id="title" styleClass="title-label" text="Order {orderId}" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0"/>
+        <Hyperlink fx:id="downloadLink" disable="true" onAction="#onDownloadAction" text="Download" underline="true"
+                   AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0"/>
+    </AnchorPane>
+    <GridPane styleClass="bordered-panel">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+            <RowConstraints vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+            <RowConstraints vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+            <RowConstraints vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" vgrow="ALWAYS"/>
+            <RowConstraints vgrow="ALWAYS"/>
+        </rowConstraints>
+        <Label fx:id="poNumber" text="PO Number : {purchaseOrderNumber}">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </padding>
+        </Label>
+        <AnchorPane GridPane.columnIndex="1">
+            <Label fx:id="status" text="Status : {status}" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                   AnchorPane.topAnchor="0.0">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
         </AnchorPane>
-        <GridPane styleClass="bordered-panel">
+        <Label text="Sender:" GridPane.rowIndex="1">
+            <padding>
+                <Insets left="10.0" right="10.0" top="10.0"/>
+            </padding>
+        </Label>
+        <Label text="Ship To:" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <padding>
+                <Insets left="10.0" right="10.0" top="10.0"/>
+            </padding>
+        </Label>
+        <GridPane styleClass="bordered-panel" GridPane.rowIndex="2">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="400.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <Label fx:id="name" text="Name: {name}" GridPane.rowIndex="1">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
+            <Label fx:id="email" text="Email: {email}" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
+            <Label fx:id="phone" text="Phone: {phone}" GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
+            <Label fx:id="authorizedBy" text="Authorized by: {authorizedBy}" GridPane.columnSpan="2147483647"
+                   GridPane.rowIndex="4">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
+            <Label fx:id="accountCode" text="Account code : {accountCode}">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
+        </GridPane>
+        <GridPane styleClass="bordered-panel" GridPane.columnIndex="1" GridPane.columnSpan="2147483647"
+                  GridPane.rowIndex="2">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+            </rowConstraints>
+            <Label fx:id="addressLine1" text="Address line 1: {addressLine1}">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
+            <Label fx:id="state" text="State: {state}" GridPane.rowIndex="3">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
+            <Label fx:id="postcode" text="Postcode: {postcode}" GridPane.rowIndex="4">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
+            <Label fx:id="country" text="Country: {country}" GridPane.rowIndex="5">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
+            <Label fx:id="addressLine2" text="Address line 2: {addressLine2}" GridPane.rowIndex="1">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
+            <Label fx:id="suburb" text="Suburb: {suburb}" GridPane.rowIndex="2">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
+            <GridPane.margin>
+                <Insets left="-10.0"/>
+            </GridPane.margin>
+        </GridPane>
+        <Label text="Additional Order Instructions:" GridPane.rowIndex="3">
+            <padding>
+                <Insets left="10.0" right="10.0" top="10.0"/>
+            </padding>
+        </Label>
+        <GridPane styleClass="bordered-panel" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
+            <columnConstraints>
                 <ColumnConstraints hgrow="ALWAYS"/>
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
                 <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                <RowConstraints vgrow="SOMETIMES"/>
                 <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                <RowConstraints vgrow="SOMETIMES"/>
                 <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                <RowConstraints vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" vgrow="ALWAYS"/>
-                <RowConstraints vgrow="ALWAYS"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
             </rowConstraints>
-            <children>
-                <Label fx:id="poNumber" text="PO Number : {purchaseOrderNumber}">
-                    <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                    </padding>
-                </Label>
-                <AnchorPane GridPane.columnIndex="1">
-                    <children>
-                        <Label fx:id="status" text="Status : {status}" AnchorPane.bottomAnchor="0.0"
-                               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                    </children>
-                </AnchorPane>
-                <Label text="Sender:" GridPane.rowIndex="1">
-                    <padding>
-                        <Insets left="10.0" right="10.0" top="10.0"/>
-                    </padding>
-                </Label>
-                <Label text="Ship To:" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <padding>
-                        <Insets left="10.0" right="10.0" top="10.0"/>
-                    </padding>
-                </Label>
-                <GridPane styleClass="bordered-panel" GridPane.rowIndex="2">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="400.0"/>
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0"
-                                        vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0"
-                                        vgrow="SOMETIMES"/>
-                    </rowConstraints>
-                    <children>
-                        <Label fx:id="name" text="Name: {name}" GridPane.rowIndex="1">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                        <Label fx:id="email" text="Email: {email}" GridPane.columnSpan="2147483647"
-                               GridPane.rowIndex="2">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                        <Label fx:id="phone" text="Phone: {phone}" GridPane.columnSpan="2147483647"
-                               GridPane.rowIndex="3">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                        <Label fx:id="authorizedBy" text="Authorized by: {authorizedBy}"
-                               GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                        <Label fx:id="accountCode" text="Account code : {accountCode}">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                    </children>
-                </GridPane>
-                <GridPane styleClass="bordered-panel" GridPane.columnIndex="1" GridPane.columnSpan="2147483647"
-                          GridPane.rowIndex="2">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                    </rowConstraints>
-                    <children>
-                        <Label fx:id="addressLine1" text="Address line 1: {addressLine1}">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                        <Label fx:id="state" text="State: {state}" GridPane.rowIndex="3">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                        <Label fx:id="postcode" text="Postcode: {postcode}" GridPane.rowIndex="4">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                        <Label fx:id="country" text="Country: {country}" GridPane.rowIndex="5">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                        <Label fx:id="addressLine2" text="Address line 2: {addressLine2}" GridPane.rowIndex="1">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                        <Label fx:id="suburb" text="Suburb: {suburb}" GridPane.rowIndex="2">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                    </children>
-                    <GridPane.margin>
-                        <Insets left="-10.0"/>
-                    </GridPane.margin>
-                </GridPane>
-                <Label text="Additional Order Instructions:" GridPane.rowIndex="3">
-                    <padding>
-                        <Insets left="10.0" right="10.0" top="10.0"/>
-                    </padding>
-                </Label>
-                <GridPane styleClass="bordered-panel" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="ALWAYS"/>
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
-                    </rowConstraints>
-                    <children>
-                        <Label fx:id="notes" text="Notes: {notes}">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                        <Label fx:id="reqDeliveryDate" text="Requested delivery date: {requestedDeliveryDate}"
-                               GridPane.rowIndex="3">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                        <Label fx:id="shipWithNextOrder" text="Ship with next order: {shipWithNextOrder}"
-                               GridPane.rowIndex="4">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                        <Label fx:id="pickUp" text="Pick up: {pickUp}" GridPane.rowIndex="5">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                        <Label fx:id="deliveryInstructions" text="Delivery instructions: {deliveryInstructions}"
-                               GridPane.rowIndex="1">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                        <Label fx:id="invoiceWithGoods" text="Include invoice with goods: {includeInvoiceWithGoods}"
-                               GridPane.rowIndex="2">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </Label>
-                    </children>
-                </GridPane>
-                <Label text="Order lines:" GridPane.rowIndex="5">
-                    <padding>
-                        <Insets left="10.0" right="10.0" top="10.0"/>
-                    </padding>
-                </Label>
-                <TableView fx:id="orderLinesTable" minHeight="-Infinity" prefHeight="200.0"
-                           GridPane.columnSpan="2147483647" GridPane.rowIndex="6">
-                    <GridPane.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                    </GridPane.margin>
-                </TableView>
-
-            </children>
+            <Label fx:id="notes" text="Notes: {notes}">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
+            <Label fx:id="reqDeliveryDate" text="Requested delivery date: {requestedDeliveryDate}"
+                   GridPane.rowIndex="3">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
+            <Label fx:id="shipWithNextOrder" text="Ship with next order: {shipWithNextOrder}" GridPane.rowIndex="4">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
+            <Label fx:id="pickUp" text="Pick up: {pickUp}" GridPane.rowIndex="5">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
+            <Label fx:id="deliveryInstructions" text="Delivery instructions: {deliveryInstructions}"
+                   GridPane.rowIndex="1">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
+            <Label fx:id="invoiceWithGoods" text="Include invoice with goods: {includeInvoiceWithGoods}"
+                   GridPane.rowIndex="2">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </Label>
         </GridPane>
-    </children>
+        <Label text="Order lines:" GridPane.rowIndex="5">
+            <padding>
+                <Insets left="10.0" right="10.0" top="10.0"/>
+            </padding>
+        </Label>
+        <TableView fx:id="orderLinesTable" minHeight="-Infinity" prefHeight="200.0" GridPane.columnSpan="2147483647"
+                   GridPane.rowIndex="6">
+            <GridPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </GridPane.margin>
+        </TableView>
+
+    </GridPane>
 </VBox>

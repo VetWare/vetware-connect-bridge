@@ -4,18 +4,20 @@ import com.fifthgen.prahranvet.vetwarebridge.Application;
 import com.fifthgen.prahranvet.vetwarebridge.data.ConnectAPI;
 import com.fifthgen.prahranvet.vetwarebridge.data.callback.GetOrderCallback;
 import com.fifthgen.prahranvet.vetwarebridge.data.model.*;
+import com.fifthgen.prahranvet.vetwarebridge.data.model.exception.BadDestinationFileException;
 import com.fifthgen.prahranvet.vetwarebridge.ui.factory.TableFactory;
+import com.fifthgen.prahranvet.vetwarebridge.utility.OrderManager;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -23,8 +25,11 @@ import java.util.logging.Logger;
 
 public class OrderController implements Initializable {
 
-    public volatile int orderId;
-    public Stage stage;
+    volatile int orderId;
+    Stage stage;
+
+    @FXML
+    private Hyperlink downloadLink;
 
     @FXML
     private Label title;
@@ -99,6 +104,49 @@ public class OrderController implements Initializable {
 
             new Thread(new OrderTableUpdater(orderId)).start();
         }).start();
+    }
+
+    @FXML
+    private void onDownloadAction() {
+        OrderLine[] orderLines = orderLinesTable.getItems().toArray(new OrderLine[0]);
+
+        if (orderLines.length != 0) {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save Order File");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Order Files", "*.csv"),
+                    new FileChooser.ExtensionFilter("All Files", "*.*"));
+            File selectedFile = fileChooser.showSaveDialog(stage);
+
+            if (selectedFile != null) {
+                OrderManager orderManager = new OrderManager(Application.propertyManager);
+                String pathWithExt = selectedFile.getPath() + ".csv";
+
+                try {
+                    orderManager.saveOrder(orderLines, pathWithExt);
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Download success.");
+                    alert.setHeaderText("Order successfully downloaded.");
+                    alert.setContentText("File saved at: " + selectedFile.getParent());
+                    alert.show();
+                } catch (BadDestinationFileException e) {
+                    Logger.getGlobal().severe("Couldn't save order :" + e.getLocalizedMessage());
+
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Cannot save order.");
+                    alert.setHeaderText(null);
+                    alert.setContentText(e.getLocalizedMessage());
+                    alert.show();
+                }
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Cannot download order.");
+            alert.setHeaderText(null);
+            alert.setContentText("Order does not contain any order lines.");
+            alert.show();
+        }
     }
 
     private class OrderTableUpdater implements Runnable {
@@ -235,13 +283,20 @@ public class OrderController implements Initializable {
 
                         orderLinesTable.setItems(data);
                         orderLinesTable.setColumnResizePolicy(param -> true);
+
+                        // Enable download label.
+                        downloadLink.setDisable(false);
                     });
                 }
 
                 @Override
                 public void onFailed(Exception e) {
                     Platform.runLater(() -> {
-                        // Show error.
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error fetching the order details.");
+                        alert.setHeaderText("Couldn't fetch the order details for order :" + orderId);
+                        alert.setContentText(e.getLocalizedMessage());
+                        alert.show();
                     });
                 }
             });

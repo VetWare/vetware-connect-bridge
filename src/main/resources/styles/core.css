@@ -33,7 +33,7 @@
 }
 
 .title-label {
-    -fx-background-color: '#2013AF';
+    -fx-background-color: '#000';
     -fx-text-fill: '#FFF';
     -fx-font-size: 16px;
     -fx-padding: 10px;

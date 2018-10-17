@@ -4,10 +4,12 @@ import com.fifthgen.prahranvet.vetwarebridge.data.model.Address;
 import com.fifthgen.prahranvet.vetwarebridge.data.model.Order;
 import com.fifthgen.prahranvet.vetwarebridge.data.model.OrderLine;
 import com.fifthgen.prahranvet.vetwarebridge.data.model.Sender;
+import com.fifthgen.prahranvet.vetwarebridge.data.model.exception.BadDestinationFileException;
 import com.fifthgen.prahranvet.vetwarebridge.data.model.exception.InvalidFileException;
 import com.fifthgen.prahranvet.vetwarebridge.data.model.exception.NonParsableFileException;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 
 import java.io.IOException;
@@ -111,16 +113,35 @@ public class OrderManager {
     }
 
     /**
+     * Save the given order lines in a CSV file.
+     *
+     * @param orderLines An array of <code>{@link OrderLine}</code> objects to be written to the file.
+     * @param fileName   Destination file name.
+     * @throws BadDestinationFileException Thrown if the destination is non writable.
+     */
+    public void saveOrder(OrderLine[] orderLines, String fileName) throws BadDestinationFileException {
+        try (CSVPrinter csvPrinter = new CSVPrinter(Files.newBufferedWriter(Paths.get(fileName)), CSVFormat.DEFAULT)) {
+
+            for (OrderLine orderLine : orderLines) {
+                csvPrinter.printRecord(orderLine.getLineItemNumber(),
+                        orderLine.getQuantity(), orderLine.getDescription(), orderLine.getNotes());
+            }
+        } catch (IOException e) {
+            throw new BadDestinationFileException();
+        }
+    }
+
+    /**
      * Generates the purchase order number with auto incrementing support.
      *
      * @param autoIncrement Whether to autoincrement the next purchase order.
      * @return The PO number string.
      */
     private String generatePONumber(boolean autoIncrement) {
-        String num = Integer.toString(++poCnt);
+        StringBuilder num = new StringBuilder(Integer.toString(++poCnt));
 
         while (num.length() < PO_NUM_DIGITS) {
-            num = '0' + num;
+            num.insert(0, '0');
         }
 
         if (autoIncrement) propertyManager.setProperty(PropertyKey.PO_CNT.getKey(), Integer.toString(poCnt));
