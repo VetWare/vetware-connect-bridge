@@ -3,7 +3,7 @@ import java.text.SimpleDateFormat
 buildscript {
     ext {
         appTitle = 'VetWare-Connect Bridge'
-        appVersion = '0.0.1'
+        appVersion = '0.1.1'
     }
 }
 

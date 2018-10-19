@@ -1,9 +1,7 @@
 package com.fifthgen.prahranvet.vetwarebridge.utility;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -60,7 +58,7 @@ public class PropertyManager {
     private synchronized void readFromFile() {
         File file = new File(propertyFile);
 
-        try (FileInputStream fis = new FileInputStream(file)) {
+        try (Reader fis = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)) {
             appProps.load(fis);
         } catch (IOException e) {
             e.printStackTrace();

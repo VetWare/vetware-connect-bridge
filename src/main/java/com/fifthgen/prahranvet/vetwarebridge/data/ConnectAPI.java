@@ -29,6 +29,7 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Logger;
 
 public class ConnectAPI {
@@ -92,7 +93,7 @@ public class ConnectAPI {
                         ObjectMapper mapper = new ObjectMapper();
 
                         try {
-                            callback.onCompleted(mapper.readValue(EntityUtils.toString(entity), OrderSummary[].class));
+                            callback.onCompleted(mapper.readValue(EntityUtils.toString(entity, StandardCharsets.UTF_8), OrderSummary[].class));
                             return;
                         } catch (IOException e) {
                             String msg = "Couldn't convert entity into OrderSummary[]";
@@ -147,7 +148,7 @@ public class ConnectAPI {
                         ObjectMapper mapper = new ObjectMapper();
 
                         try {
-                            callback.onCompleted(mapper.readValue(EntityUtils.toString(entity), Order.class));
+                            callback.onCompleted(mapper.readValue(EntityUtils.toString(entity, StandardCharsets.UTF_8), Order.class));
                             return;
                         } catch (IOException e) {
                             String msg = "Couldn't convert entity into Order";
@@ -208,7 +209,7 @@ public class ConnectAPI {
                             HttpEntity entity = result.getEntity();
 
                             try {
-                                callback.onCompleted(mapper.readValue(EntityUtils.toString(entity), OrderPlaced.class));
+                                callback.onCompleted(mapper.readValue(EntityUtils.toString(entity, StandardCharsets.UTF_8), OrderPlaced.class));
                                 return;
                             } catch (IOException e) {
                                 String msg = "Couldn't convert entity into OrderPlaced";
