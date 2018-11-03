@@ -41,6 +41,7 @@ repositories {
 dependencies {
 
     compile 'org.apache.httpcomponents:httpasyncclient:4.1.4'
+    implementation 'commons-io:commons-io:2.6'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.7'
     implementation 'org.kordamp.ikonli:ikonli-javafx:2.4.0'
     implementation 'org.kordamp.ikonli:ikonli-material-pack:2.4.0'

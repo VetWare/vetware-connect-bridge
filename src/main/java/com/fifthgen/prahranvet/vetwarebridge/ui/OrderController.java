@@ -16,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.net.URL;
@@ -120,10 +121,15 @@ public class OrderController implements Initializable {
 
             if (selectedFile != null) {
                 OrderManager orderManager = new OrderManager(Application.propertyManager);
-                String pathWithExt = selectedFile.getPath() + ".csv";
+
+                // Add the CSV extension if already doesn't exist.
+                if (!FilenameUtils.getExtension(selectedFile.getName()).equalsIgnoreCase("csv")) {
+                    selectedFile = new File(selectedFile.getParentFile(),
+                            FilenameUtils.getBaseName(selectedFile.getName()) + ".csv");
+                }
 
                 try {
-                    orderManager.saveOrder(orderLines, pathWithExt);
+                    orderManager.saveOrder(orderLines, selectedFile.getPath());
 
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Download success.");
