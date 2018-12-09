@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 public class Application extends javafx.application.Application {
@@ -97,6 +98,9 @@ public class Application extends javafx.application.Application {
         if (propertyManager.getProperty(PropertyKey.PO_CNT.getKey()) == null) {
             propertyManager.setProperty(PropertyKey.PO_CNT.getKey(), "0");
         }
+        if (propertyManager.getProperty(PropertyKey.LAST_SAVE_DIR.getKey()) == null) {
+            propertyManager.setProperty(PropertyKey.LAST_SAVE_DIR.getKey(), "");
+        }
     }
 
     @Override
@@ -112,7 +116,7 @@ public class Application extends javafx.application.Application {
 
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle(STAGE_TITLE);
-        primaryStage.getIcons().add(new Image(ClassLoader.getSystemResourceAsStream("images/logo.png")));
+        primaryStage.getIcons().add(new Image(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream("images/logo.png"))));
         primaryStage.setWidth(WIDTH);
         primaryStage.setHeight(HEIGHT);
 

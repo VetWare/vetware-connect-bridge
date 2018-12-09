@@ -7,6 +7,7 @@ import com.fifthgen.prahranvet.vetwarebridge.data.model.*;
 import com.fifthgen.prahranvet.vetwarebridge.data.model.exception.BadDestinationFileException;
 import com.fifthgen.prahranvet.vetwarebridge.ui.factory.TableFactory;
 import com.fifthgen.prahranvet.vetwarebridge.utility.OrderManager;
+import com.fifthgen.prahranvet.vetwarebridge.utility.PropertyKey;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,8 @@ import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -113,6 +116,18 @@ public class OrderController implements Initializable {
 
         if (orderLines.length != 0) {
             FileChooser fileChooser = new FileChooser();
+
+            // Auto-generate file name.
+            DateFormat fmt = new SimpleDateFormat("dd-MM-yyyy-HH:mm:ss");
+            String fileName = "Order-" + fmt.format(new Date()) + ".csv";
+            fileChooser.setInitialFileName(fileName);
+
+            // Get the last saved directory from the property manager.
+            String lastSavedDir = Application.propertyManager.getProperty(PropertyKey.LAST_SAVE_DIR.getKey());
+            if (!lastSavedDir.isEmpty()) {
+                fileChooser.setInitialDirectory(new File(lastSavedDir));
+            }
+
             fileChooser.setTitle("Save Order File");
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("Order Files", "*.csv"),
@@ -145,6 +160,10 @@ public class OrderController implements Initializable {
                     alert.setContentText(e.getLocalizedMessage());
                     alert.show();
                 }
+
+                // Save the path in the property file.
+                lastSavedDir = FilenameUtils.getFullPathNoEndSeparator(selectedFile.getAbsolutePath());
+                Application.propertyManager.setProperty(PropertyKey.LAST_SAVE_DIR.getKey(), lastSavedDir);
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

@@ -15,7 +15,8 @@ public enum PropertyKey {
     CLIENT_TOKEN("client-token"),
     USER_TOKEN("user-token"),
     API_URL("api-url"),
-    PO_CNT("po-cnt");
+    PO_CNT("po-cnt"),
+    LAST_SAVE_DIR("last-save-dir");
 
     private final String key;
 
