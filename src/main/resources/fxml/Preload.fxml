@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="pane" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@../styles/about.css" />
+    </stylesheets>
+    <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" styleClass="logo" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+
+        <Image url="@../images/logo.png" />
+
+    </ImageView>
+    <Label styleClass="title" text="Provet Connect Bridge" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="35.0" />
+    <Label alignment="TOP_LEFT" styleClass="content" text="Please wait, Provet Connect Bridge Is Loading" textAlignment="JUSTIFY" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0" />
+    <Label styleClass="footer" text="Copyright © 2019, VetWare Pty Ltd" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="165.0" />
+   <ProgressIndicator fx:id="progress" layoutX="187.0" layoutY="110.0" prefHeight="40.0" prefWidth="184.0" progress="0.0" />
+</AnchorPane>
